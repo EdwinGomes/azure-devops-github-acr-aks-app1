@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'cf9f2bef-6696-4dea-9fa3-580d9b5cab9d'
+  dockerRegistryServiceConnection: 'b545a662-5c7d-4cd5-a532-aeb84b80db50'
   imageRepository: 'custom1aksnginxapp1'
-  containerRegistry: 'aksdevopsacr.azurecr.io'
+  containerRegistry: 'myacr5aea9e.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   
@@ -37,7 +37,8 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-## Publish Artifacts pipeline code in addition to Build and Push          
+## Publish Artifacts pipeline code in addition to Build and Push     
+    - bash: echo Contents in Sources Directory; ls -R $(Build.SourcesDirectory)       
     - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
     - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
     # Task-2: Copy files (Copy files from a source folder to target folder)
